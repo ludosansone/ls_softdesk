@@ -59,3 +59,20 @@ class Issue(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class Comment(models.Model):
+    description = models.TextField(
+                                   max_length=2000,
+                                   null=False)
+    created_time = models.DateTimeField(
+                                        verbose_name='date et heure de création',
+                                        auto_now_add=True)
+    issue = models.ForeignKey(
+                              Issue,
+                              on_delete=models.CASCADE,
+                              null=False)
+    author = models.ForeignKey(
+                               get_user_model(),
+                               on_delete=models.CASCADE,
+                               null=False)
