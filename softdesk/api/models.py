@@ -4,19 +4,19 @@ from django.contrib.auth import get_user_model
 
 class Project(models.Model):
     title = models.CharField(
-                             verbose_name='titre',
-                             max_length=200,
-                             null=False)
+        verbose_name='titre',
+        max_length=200,
+        null=False)
     description = models.TextField(
-                                   max_length=2000,
-                                   null=False)
+        max_length=2000,
+        null=False)
     type = models.CharField(
-                            max_length=100,
-                            null=False)
+        max_length=100,
+        null=False)
     author = models.ForeignKey(
-                               get_user_model(),
-                               null=False,
-                               on_delete=models.CASCADE)
+        get_user_model(),
+        null=False,
+        on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
@@ -24,38 +24,38 @@ class Project(models.Model):
 
 class Issue(models.Model):
     title = models.CharField(
-                             verbose_name='titre',
-                             max_length=200,
-                             null=False)
+        verbose_name='titre',
+        max_length=200,
+        null=False)
     description = models.TextField(
-                                   max_length=2000,
-                                   null=False)
+        max_length=2000,
+        null=False)
     tag = models.CharField(
-                           max_length=100,
-                           null=False)
+        max_length=100,
+        null=False)
     priority = models.CharField(
-                                max_length=100,
-                                null=False)
+        max_length=100,
+        null=False)
     status = models.CharField(
-                              max_length=100,
-                              null=False)
+        max_length=100,
+        null=False)
     created_time = models.DateTimeField(
-                                        verbose_name='date et heure de création',
-                                        auto_now_add=True)
+        verbose_name='date et heure de création',
+        auto_now_add=True)
     project = models.ForeignKey(
-                                Project,
-                                on_delete=models.CASCADE,
-                                null=False)
+        Project,
+        on_delete=models.CASCADE,
+        null=False)
     author = models.ForeignKey(
-                               get_user_model(),
-                               on_delete=models.CASCADE,
-                               null=False,
-                               related_name='author')
+        get_user_model(),
+        on_delete=models.CASCADE,
+        null=False,
+        related_name='author')
     assigned = models.ForeignKey(
-                                get_user_model(),
-                                on_delete=models.CASCADE,
-                                null=False,
-                                related_name='assigned')
+        get_user_model(),
+        on_delete=models.CASCADE,
+        null=False,
+        related_name='assigned')
 
     def __str__(self):
         return self.title
@@ -63,16 +63,44 @@ class Issue(models.Model):
 
 class Comment(models.Model):
     description = models.TextField(
-                                   max_length=2000,
-                                   null=False)
+        max_length=2000,
+        null=False)
     created_time = models.DateTimeField(
-                                        verbose_name='date et heure de création',
-                                        auto_now_add=True)
+        verbose_name='date et heure de création',
+        auto_now_add=True)
     issue = models.ForeignKey(
-                              Issue,
-                              on_delete=models.CASCADE,
-                              null=False)
+        Issue,
+        on_delete=models.CASCADE,
+        null=False)
     author = models.ForeignKey(
-                               get_user_model(),
-                               on_delete=models.CASCADE,
-                               null=False)
+        get_user_model(),
+        on_delete=models.CASCADE,
+        null=False)
+
+    def __str__(self):
+        return self.description
+
+
+class Contributor(models.Model):
+    permissions = [
+        ('r', 'read'),
+        ('rw', 'read and write')
+    ]
+
+    role = models.CharField(
+        verbose_name='rôle',
+        max_length=100,
+        null=False)
+    permission = models.CharField(
+        max_length=100,
+        null=False,
+        choices=permissions,
+        default='r')
+    user = models.ForeignKey(
+        get_user_model(),
+        on_delete=models.CASCADE,
+        null=False)
+    project = models.ForeignKey(
+        Project,
+        on_delete=models.CASCADE,
+        null=False)

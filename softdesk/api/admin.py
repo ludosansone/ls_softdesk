@@ -1,3 +1,5 @@
 from django.contrib import admin
-
-# Register your models here.
+from api.models import Project, Issue, Comment
+admin.register(Project)
+admin.register(Issue)
+admin.register(Comment)
