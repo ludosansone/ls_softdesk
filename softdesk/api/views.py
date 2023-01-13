@@ -1,9 +1,11 @@
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.permissions import IsAuthenticated
 from api.serializers import ProjectListSerializer, ProjectDetailSerializer
 from api.models import Project
 
 
 class ProjectViewSet(ModelViewSet):
+    permission_classes = [IsAuthenticated]
     list_serializer = ProjectListSerializer
     detail_serializer = ProjectDetailSerializer
 
