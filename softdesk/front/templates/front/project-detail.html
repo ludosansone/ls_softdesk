@@ -1,0 +1,22 @@
+{% extends "front/base.html" %}
+
+{% block content %}
+<h2>
+    {{ project.title }}
+</h2>
+
+<p>
+    Requête GET sur : {{ uri }}
+</p>
+
+<p>
+    Identifiant : {{ project.id }}
+</p>
+<p>
+    Description : {{ project.description}}
+</p>
+
+<p>
+    Type de projet : {{ project.type}}
+</p>
+{% endblock content %}

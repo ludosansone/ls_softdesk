@@ -1,0 +1,24 @@
+{% extends "front/base.html" %}
+
+{% block content %}
+<h2>
+    Liste de Projets
+</h2>
+
+<p>
+    Requête GET sur : {{ uri }}
+</p>
+
+<p>
+<ul>
+    {% for project in response.results %}
+    <li>
+        <a href="{% url 'projectdetail' project.id %}">
+            {{ project.title }} ({{ project.description }})
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+</p>
+
+{% endblock content %}

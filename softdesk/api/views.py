@@ -5,7 +5,7 @@ from api.models import Project
 
 
 class ProjectViewSet(ModelViewSet):
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
     list_serializer = ProjectListSerializer
     detail_serializer = ProjectDetailSerializer
 
