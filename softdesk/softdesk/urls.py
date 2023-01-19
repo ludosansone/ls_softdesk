@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
-from api.views import ProjectViewSet
+from api.views.project import ProjectViewSet
 from front.urls import front_urlpatterns
 
 
