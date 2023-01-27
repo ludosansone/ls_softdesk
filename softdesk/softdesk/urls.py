@@ -6,6 +6,7 @@ from api.views.project import ProjectViewSet
 from api.views.issue import IssueViewSet
 from api.views.comment import CommentViewSet
 from api.views.contributor import ContributorViewSet
+from api.views.signup import SignupView
 from front.urls import front_urlpatterns
 
 
@@ -22,4 +23,5 @@ urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/', include(router.urls)),
+    path('api/signup/', SignupView.as_view(), name='signup'),
 ]
