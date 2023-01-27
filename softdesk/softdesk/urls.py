@@ -11,7 +11,7 @@ from front.urls import front_urlpatterns
 
 
 router = routers.SimpleRouter()
-router.register('project', ProjectViewSet, basename='project')
+router.register('projects', ProjectViewSet, basename='project')
 router.register('issue', IssueViewSet, basename='issue')
 router.register('comment', CommentViewSet, basename='comment')
 router.register('contributor', ContributorViewSet, basename='contributor')

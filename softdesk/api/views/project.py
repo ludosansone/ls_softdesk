@@ -1,11 +1,11 @@
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import IsAuthenticated
-from rest_framework.mixins import CreateModelMixin
+from rest_framework.mixins import CreateModelMixin, UpdateModelMixin, DestroyModelMixin
 from api.serializers.project import ProjectListSerializer, ProjectDetailSerializer
 from api.models import Project
 
 
-class ProjectViewSet(ModelViewSet, CreateModelMixin):
+class ProjectViewSet(ModelViewSet, CreateModelMixin, UpdateModelMixin, DestroyModelMixin):
     # permission_classes = [IsAuthenticated]
     list_serializer = ProjectListSerializer
     retrieve_serializer = ProjectDetailSerializer
@@ -20,3 +20,9 @@ class ProjectViewSet(ModelViewSet, CreateModelMixin):
 
     def create(self, request, *args, **kwargs):
         return super().create(request, *args, **kwargs)
+
+    def update(self, request, *args, **kwargs):
+        return super().update(request, *args, **kwargs)
+
+    def destroy(self, request, *args, **kwargs):
+        return super().destroy(request, *args, **kwargs)
