@@ -7,6 +7,7 @@ class CommentListSerializer(ModelSerializer):
         model = Comment
         fields = ('id', 'description', 'issue')
 
+
 class CommentDetailSerializer(ModelSerializer):
     class Meta:
         model = Comment

@@ -16,4 +16,3 @@ class ProjectViewSet(ModelViewSet):
         if self.action == 'retrieve':
             return self.retrieve_serializer
         return self.list_serializer
-
