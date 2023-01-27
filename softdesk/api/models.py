@@ -45,7 +45,8 @@ class Issue(models.Model):
     project = models.ForeignKey(
         Project,
         on_delete=models.CASCADE,
-        null=False)
+        null=False,
+        related_name='issues')
     author = models.ForeignKey(
         get_user_model(),
         on_delete=models.CASCADE,
