@@ -11,7 +11,8 @@ class ProjectViewSet(ModelViewSet, CreateModelMixin, UpdateModelMixin, DestroyMo
     retrieve_serializer = ProjectDetailSerializer
 
     def get_queryset(self):
-        return Project.objects.all()
+        queryset = Project.objects.filter(author__id=2)
+        return queryset
 
     def get_serializer_class(self):
         if self.action == 'retrieve':
