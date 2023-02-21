@@ -4,6 +4,9 @@ from rest_framework.mixins import CreateModelMixin, UpdateModelMixin, DestroyMod
 from api.serializers.project import ProjectListSerializer, ProjectDetailSerializer
 from api.models import Project
 
+# from drf_spectacular.utils import extend_schema, OpenApiParameter, OpenApiExample
+# from drf_spectacular.types import OpenApiTypes
+
 
 class ProjectViewSet(ModelViewSet, CreateModelMixin, UpdateModelMixin, DestroyModelMixin):
     # permission_classes = [IsAuthenticated]

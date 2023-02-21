@@ -5,7 +5,7 @@ from rest_framework.serializers import ModelSerializer
 class CommentListSerializer(ModelSerializer):
     class Meta:
         model = Comment
-        fields = ('id', 'description', 'issue')
+        fields = ('id', 'description', 'issue', 'author')
 
 
 class CommentDetailSerializer(ModelSerializer):
