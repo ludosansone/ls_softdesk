@@ -9,7 +9,7 @@ from drf_spectacular.types import OpenApiTypes
 
 
 class ProjectViewSet(ModelViewSet, CreateModelMixin, UpdateModelMixin, DestroyModelMixin):
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     list_serializer = ProjectListSerializer
     retrieve_serializer = ProjectDetailSerializer
 
