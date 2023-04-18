@@ -1,5 +1,6 @@
 from rest_framework.permissions import BasePermission
 
+
 class IsContributor(BasePermission):
     def has_permission(self, request, view):
         return True
@@ -13,5 +14,5 @@ class IsContributor(BasePermission):
         for contributor in contributors:
             if contributor.user == request.user:
                 return True
-                
+
         return False
