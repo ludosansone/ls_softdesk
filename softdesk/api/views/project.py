@@ -3,13 +3,13 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.mixins import CreateModelMixin, UpdateModelMixin, DestroyModelMixin
 from api.serializers.project import ProjectListSerializer, ProjectDetailSerializer
 from api.models import Project
-
+from api.permissions.contributor import IsContributor
 from drf_spectacular.utils import extend_schema, OpenApiParameter, OpenApiExample
 from drf_spectacular.types import OpenApiTypes
 
 
 class ProjectViewSet(ModelViewSet, CreateModelMixin, UpdateModelMixin, DestroyModelMixin):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsContributor]
     list_serializer = ProjectListSerializer
     retrieve_serializer = ProjectDetailSerializer
 
