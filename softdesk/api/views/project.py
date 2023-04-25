@@ -1,11 +1,11 @@
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.mixins import CreateModelMixin, UpdateModelMixin, DestroyModelMixin
+from django.db.models import Q
 from api.serializers.project import ProjectListSerializer, ProjectDetailSerializer
 from api.models import Project
-from api.permissions.contributor import IsContributor
-from drf_spectacular.utils import extend_schema, OpenApiParameter, OpenApiExample
-from drf_spectacular.types import OpenApiTypes
+from api.permissions.project_contributor import IsContributor
 
 
 class ProjectViewSet(ModelViewSet, CreateModelMixin, UpdateModelMixin, DestroyModelMixin):
@@ -14,8 +14,7 @@ class ProjectViewSet(ModelViewSet, CreateModelMixin, UpdateModelMixin, DestroyMo
     retrieve_serializer = ProjectDetailSerializer
 
     def get_queryset(self):
-        queryset = Project.objects.filter(author__id=2)
-        return queryset
+        return Project.objects.all()
 
     def get_serializer_class(self):
         if self.action == 'retrieve':

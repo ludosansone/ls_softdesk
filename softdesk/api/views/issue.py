@@ -3,19 +3,20 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.mixins import CreateModelMixin, UpdateModelMixin, DestroyModelMixin
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
+from django.db.models import Q
 from api.models import Project, Issue
 from api.serializers.project import ProjectListSerializer, ProjectDetailSerializer
 from api.serializers.issue import IssueListSerializer, IssueDetailSerializer
+from api.permissions.issue_author import IsAuthorOrContributor
 
 
 class IssueViewSet(ModelViewSet, CreateModelMixin, UpdateModelMixin, DestroyModelMixin):
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsAuthorOrContributor]
     list_serializer = IssueListSerializer
     retrieve_serializer = IssueDetailSerializer
 
     def get_queryset(self):
-        id = self.kwargs['id']
-        return Issue.objects.filter(project__id=id)
+        return Issue.objects.all()
 
     def get_serializer_class(self):
         if self.action == 'retrieve':
