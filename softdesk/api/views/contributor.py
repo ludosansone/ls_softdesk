@@ -5,10 +5,11 @@ from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from api.models import Contributor
 from api.serializers.contributor import ContributorListSerializer, ContributorDetailSerializer
+from api.permissions.is_author_or_contributor import IsAuthorOrContributor
 
 
 class ContributorViewSet(ModelViewSet, CreateModelMixin, DestroyModelMixin):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsAuthorOrContributor]
     list_serializer = ContributorListSerializer
     retrieve_serializer = ContributorDetailSerializer
 

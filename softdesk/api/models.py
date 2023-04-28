@@ -72,7 +72,8 @@ class Comment(models.Model):
     issue = models.ForeignKey(
         Issue,
         on_delete=models.CASCADE,
-        null=False)
+        null=False,
+        related_name='comments')
     author = models.ForeignKey(
         get_user_model(),
         on_delete=models.CASCADE,

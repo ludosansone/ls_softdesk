@@ -5,11 +5,11 @@ from rest_framework.mixins import CreateModelMixin, UpdateModelMixin, DestroyMod
 from django.db.models import Q
 from api.serializers.project import ProjectListSerializer, ProjectDetailSerializer
 from api.models import Project
-from api.permissions.project_contributor import IsContributor
+from api.permissions.is_author_or_contributor import IsAuthorOrContributor
 
 
 class ProjectViewSet(ModelViewSet, CreateModelMixin, UpdateModelMixin, DestroyModelMixin):
-    permission_classes = [IsAuthenticated, IsContributor]
+    permission_classes = [IsAuthenticated, IsAuthorOrContributor]
     list_serializer = ProjectListSerializer
     retrieve_serializer = ProjectDetailSerializer
 

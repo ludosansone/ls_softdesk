@@ -7,11 +7,11 @@ from django.db.models import Q
 from api.models import Project, Issue
 from api.serializers.project import ProjectListSerializer, ProjectDetailSerializer
 from api.serializers.issue import IssueListSerializer, IssueDetailSerializer
-from api.permissions.issue_author import IsAuthorOrContributor
+from api.permissions.is_project_author_or_contributor import IsProjectAuthorOrContributor
 
 
 class IssueViewSet(ModelViewSet, CreateModelMixin, UpdateModelMixin, DestroyModelMixin):
-    permission_classes = [IsAuthenticated, IsAuthorOrContributor]
+    permission_classes = [IsAuthenticated, IsProjectAuthorOrContributor]
     list_serializer = IssueListSerializer
     retrieve_serializer = IssueDetailSerializer
 

@@ -5,10 +5,12 @@ from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
 from api.models import Comment
 from api.serializers.comment import CommentListSerializer, CommentDetailSerializer
+from api.permissions.is_project_author_or_contributor import IsProjectAuthorOrContributor
+from api.permissions.is_comment_author import IsCommentAuthor
 
 
 class CommentViewSet(ModelViewSet, CreateModelMixin, UpdateModelMixin, DestroyModelMixin):
-    # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, IsProjectAuthorOrContributor, IsCommentAuthor]
     list_serializer = CommentListSerializer
     retrieve_serializer = CommentDetailSerializer
 
