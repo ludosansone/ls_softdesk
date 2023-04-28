@@ -4,6 +4,11 @@ from api.models import Project
 
 class IsProjectAuthorOrContributor(BasePermission):
     def has_permission(self, request, view):
+        """
+            Renvoie True si l'utilisateur connecté est l'auteur du projet correspondants aux issues ou aux contributors
+            ou s'il se trouve dans la liste des contributeurs du projet
+        """
+
         id = view.kwargs.get('id')
         project = Project.objects.get(id=id)
 
